@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script src="https://kit.fontawesome.com/cbf1616e77.js" crossorigin="anonymous"></script>
+  <title>DGCOM</title>
+  <style>
+    .carousel-open:checked+.carousel-item {
+      position: static;
+      opacity: 100;
+    }
+
+    .carousel-item {
+      -webkit-transition: opacity 0.6s ease-out;
+      transition: opacity 0.6s ease-out;
+    }
+
+    #carousel-1:checked~.control-1,
+    #carousel-2:checked~.control-2,
+    #carousel-3:checked~.control-3 {
+      display: block;
+    }
+
+    .carousel-indicators {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      bottom: 2%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    #carousel-1:checked~.control-1~.carousel-indicators li:nth-child(1) .carousel-bullet,
+    #carousel-2:checked~.control-2~.carousel-indicators li:nth-child(2) .carousel-bullet,
+    #carousel-3:checked~.control-3~.carousel-indicators li:nth-child(3) .carousel-bullet {
+      color: #3397ff;
+      /*Set to match the Tailwind colour you want the active one to be */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- header -->
+  <header class="py-4 shadow-sm bg-white">
+    <div class="container flex items-center justify-between">
+      <!-- logo -->
+      <a href="#">
+        <img src="assets/dgcom logo.png" class="w-32" alt="">
+      </a>
+      <!-- searchbar -->
+      <div class="w-full max-w-xl relative flex hidden md:flex">
+        <span class="absolute left-4 top-3 text-lg text-gray-400">
+          <i class="fas fa-search"></i>
+        </span>
+        <input type="text"
+          class="w-full border border-primary border-r-0 pl-12 py-3 pr-3 rounded-l-md focus:outline-none"
+          placeholder="search">
+        <button
+          class="bg-primary border border-primary text-white px-8 rounded-r-md hover:bg-transparent hover:text-primary transition">Search</button>
+      </div>
+
+      <!-- icons -->
+      <div class="flex items-center space-x-4">
+        <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+          <div class="text-2xl">
+            <i class="far fa-heart"></i>
+          </div>
+          <div class="text-xs leading-3">Wish List</div>
+          <span
+            class="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
+        </a>
+        <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+          <div class="text-2xl">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <div class="text-xs leading-3">Cart</div>
+          <span
+            class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
+        </a>
+        <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+          <div class="text-2xl">
+            <i class="far fa-user"></i>
+          </div>
+          <div class="text-xs leading-3">Account</div>
+          <span
+            class="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  <!-- header end -->
+  <!-- navbar -->
+  <nav class="bg-gray-800">
+    <div class="container flex">
+      <!-- all category -->
+      <div class="px-8 py-4 bg-primary flex items-center cursor-pointer relative group">
+        <span class="text-white">
+          <i class="fas fa-bars"></i>
+        </span>
+        <span class="capitalize ml-2 text-white hidden md:block">All categories</span>
+        <div
+          class="absolute w-48 md:w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 group-hover:opacity-100 transition duration-300 invisible group-hover:visible z-10">
+          <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAD4UlEQVRogcWay0tXQRTHP7/SFuYrKDR8Zc9NC5MgsgeEi6yIHquQ9llBuxZRUJCP+g9qXVSmLiKjsnZlVJtapQaZiwwXSfazB4RkizmXe73e12/mzvULl/nN/Oac7zn3zsyZe+7kSAcrgXZgN7AeaARKgGKgVPrMAnPAH+CTXC+Bu8DvlOwwQiMwAcxrXp+BhsytDsBNlEHvgbPAPpRzq4AKT79SaasD9gIdwDuRvZGhvaEYRxnTpCHbLLJjqVqkgWoxZAZYpiFfBOSBf0CViSE65F60SjksxhSKOZHNAW0mhpg60i7lEwMdg1KeNLRFCzngAmpYfWPhpC4UZcCU6LosujNBCdCP/nIbd/ULh1WsAd5adMK53gqXFRR5nBgBjqCGRVooA44Co8LxRjhTRweuE5U2CASVuM6cskHwSpQfsaHch+PCNWxD+YwoT3M4haFcuL7bUO5MRF2sAK4DX4FJoEfabPEZKa4HhlBb9iGpO7jG4tWpOwHfR6BFz+RoxVF4xkJDn3r+m5S2FmCX/J4M0bPOp2ckzjjTLUo38BPokvoOKQ9IuTNAxhu5w27MQSl7pdyia2AQgp7IrLTlpT7Ewjvp3YP1sHhodRGMTvn/UgivEYIUdqGc6ZR6PWo4zaKcqPP0XYFyZhL4IrJhk91x5GIIrxGsrSIBOC1ct6TUeUUIRaGO1AJ9qGGXBwaATQll/ZP9QwG8sfA7EhUXaoFpFs+JaaAmgbyXb5TgRSM1R6LiQp/UH4rhNagXqHnclSgurmQWEKPiQl7qNZ7+ddI2k0A+iC8SpnEEguPCfMB/hchbhf8ORcWFAakPouZLLfBI2voSyHv5Xth2JCoubEa9ywdN9o0J5PHJWXUkDjWoif1Drj5cJwrhW3JHksK/X/PzZe5IXFwI2+L792t+vswdiYsLYVt8/37Nz5e5I3FxwYktbQQ/gTC+RI6kEUf8CIsLr6V8LOWrhPqsL79+xMWFqC2+Dp82kkz2pO8bafBp47soziIdVCFcidNBhcwRJwHQGtkrHTgcqb6HOHBSpqPYT5mOCZeVlGkRKrHsOHMMlRFMC+WoVKnjxGssJbEh288Kq2054aAEd5tu47pHBh96HOSAK0I8hdlKVom75T9vbpoenosBZwx0nBMdD0wMMd2i3JbysIGO/VL2RvayjCpU8iyP3gqzDPe7S3WKdmnBWS6bNWSbRHbc1IjlpgqArcB2VCY+hzryNI+628XAX+lXgVqN1gLbgEPAVdSTuI97cGDJ0IA6qqS73E6gUqRGSOuUQQlwAtiDOni2QdqKcJdm5+DZL5Tx46h3jTukcPDsP88x631hC2M4AAAAAElFTkSuQmCC"
+              class="w-5 h-5 object-contain">
+            <span class="ml-6 text-gray-600 text-sm">Watches</span>
+          </a>
+          <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAA2klEQVRoge3aQQqCQBiG4Zeuoe6qu4u4yi5Q10lIL1CLGTdJCTEzfdD3gLiR33lHdwp/rgY6YAYeiY4Z6IFDyYgxYcDrMQJViZAu3vC0ccMr60VePlxfAUO8rk2y0g3L65Rj15o4+55h9sqyu1LzdxkW8hMOUeMQNQ5R4xA1DlHjEDUOUeMQNQ5R4xA1DlHjEDUOUeMQNQ5R4xA1DlHjEDUOUfNNyBzPdcqFRE08Txlmr/SED/oDaWNq4BxndwnnvnUEbuT9qWZfIgTCfygt4RVIFTARnkSxCElPAlZ0vuKzOsUAAAAASUVORK5CYII="
+              class="w-5 h-5 object-contain">
+            <span class="ml-6 text-gray-600 text-sm">Smartphone</span>
+          </a>
+          <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+            <img
+              src="data:image/png;base64,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"
+              class="w-5 h-5 object-contain">
+            <span class="ml-6 text-gray-600 text-sm">Headsets</span>
+          </a>
+          <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAEFklEQVRoge3YzavUVRzH8Zdz9d60TNGeVCqoRNu0aJWS18JFgbRxE+YiCyIiN0YPoEGP1i2iwCLcBbXyD5CokMgKXfSokJqF4UOmVlT2cNVyWny/v2Yc5zdznXuHaTFvOMz8vud8z/mc33n4fc+hT58+ffr0gEljKDOImzAf0/A13ummKNyOBfgd+7ADp1o5tOrITDyN1ZjekLccUzEPczNdgVmi4xeKTg9hRvr8ipP4E3+ksJ/xA77PdBh/YUtDeyfwBp7AL6061IxHUf2fpUfKxDYbkSnYJqZTM47ggHiDB3Eo/x8Vb+6UePuj4u3+ln4Xi1G8QIzSoBjpy8XIzsOVYnSvwpyS9ndgCf5u15EH8ZqYn9vxGXZn2lMnrNvMEOvk+kw3YhEuSo2vt3IeEvO0iju7KrMzVgptR8TIlnJ/Fvzc2Ha0bvGcmBEbGuyT8IXQeF+rCnZmodUN9vfTvnVCZLbnRLbXbBrfm3lfljkvzgLHnTtsxzPv2ITIbM8G0Zlnm+RNxY+pZ3Ez502ZOZLPM7AGt2Fd5q3L5zVq34eJomw6NbO/kHo2NVYyWbztKq5L22Nq+/d63KDWoWrmTyRl06mZfX7ajmIAKpmxFJeKNfLNGBuudqa3lI3izW8cg30fduEyDNcXLobqyTrbTKzVfGqtNfFTq56yaVbPU6np+XrjjjTeXOJULPbj49c4JlrtWgXDWWZ7YZiO0yKkKPvIbE2n9yZEZnta7VoFU4XmU+Jrb6kQ+VG31XWBj4X24YqIY4iFfr4MivVVhOAjaeuWXyO78nchvCJ6tbaDikacG2qPtPQYn18jD6Xvy/B2PizvoKIiwKxPh7vo18gd6bulohb3H+igol5TaJ5TUTvGdnLOeKuJ7c0u+jVSf2j77xsxu4OKBsXcPuz8F3snfo1coi6YPZkPnVTUa4aE9tGKDLrwT+/0dEyheaAivo60OTrWsUh84YswYiLTCbyr/OKjkaH8HYWfspJZY3C8VW0qdjONioijHbPVxYDFnj63jdNkET5XRUjdjeh3Jl7NNvZlm62Yl2UPwd58WNDGqTgr71FbV91gQFw9VbPNVizMcrvhw3wYbuEwBd9muZXjVToGimuf77TeTW/Jch9UxHGROG2VcQ+uwVfYPH6dbdksAsKrcXeLcoXmYxW1GGd+SeFBcWYnTmVnxilyLJzBM/n/ceWjcm3+HoFVYng+UTvD1/NA5u8sye8WFXF3VU0NjQyI69wq7iKu//en4UVnix0SF9VVrOia5HJWZNsH1b4ZhMaXMm+/6ANi0ZxWG5mHsUzt0qFXV6iTsu3i4mNZavs0baeF9rNYovk5oSri/l5RnDka0yHllyWmiTWzSWzLe8Wb6DXrhZZtQtsqddOpT58+ffr0jH8BXyyBWxwE/9sAAAAASUVORK5CYII="
+              class="w-5 h-5 object-contain">
+            <span class="ml-6 text-gray-600 text-sm">Gamers</span>
+          </a>
+
+          <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABgklEQVRoge2Zv07CUBTGfxr8s9XdSRPjEzDDoEyasPIE4hPoE+g78AKsbrARZ3adRIfyAk6K8c9wbyM9lLTQQk/I+SUnpd9NOd/X29LmAoZhLMolEAK/SisELrIEGSswm1bjLEG+fWnlx1eM7RKMrAQLog0Log0Log0Log0Log0Log0Log0Log0Log0Log0Loo2NCVJJ0N6AY9yKnlZGUpAzsgME6/GSiwDndS4N3Ex0hN72enc1vhLp+p5XQu94/XxalDPS9NsHodf89rEAg1mJetWEHnlrMoct3JL9O7AvxspcoZcr73veY+g9A/EZqQKHQB/4EAfP3Fxr5EXsfwI9nNdq0gH3uDPQWq2vQmjhvN4lDT4DE+AgZ5M66ZdLPWePADczT3LgxDfo5WwAMCA9yKCAPn3/XafT4q0X2wU0WBfXOM830+KQ8v8XXLaG8P/zNSHlSamYL2C3IoWSzCzLJPqwcW+/IXCE7jfeecQe1g3glfJv3EVrBJwVdkoMY5Y/jUQTbKbuXcEAAAAASUVORK5CYII="
+              class="w-5 h-5 object-contain">
+            <span class="ml-6 text-gray-600 text-sm">Laptop</span>
+          </a>
+          <a href="#" class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+            <img
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAADfUlEQVRoge2YTU8UQRCGn5D1ICwfiXiBRC8iGg+i6NGIGlFCAsKP8AcYlagJQUGvKuhN45WL0eAJFxMj4WAi6EXxKhA5GEW+EwTWQ1UzA9md7Z3pZcXsm3R6Zrrq7arp6u7qhgIKKCAf2A3cAr4Cq0DSsqyqzk3lyCuKgbfYG5+ujACl22z7JjxWQ6aBZiCWhW5MdaaV41FUY0YI/lvDafT2ASvAH+BohP7rlGNFOUPDZuhToVPb+qN0ruhXrs4wysXAZYKNtXGyMUznW9CYgncBGAPuAHvTKTYAEz6l92nkhjM48Q4oiu4HRcqVrp9ZoH2r0gUkHpPAc+AU2U3S7UIJ8sNfIrauAW2msRL4oQ1X8mFdSHQgNv9GfKBLP7zJYae12vEQMI7E+oI+J4DrwMEQvAOI7bcBPunLaZ9AMzAFTAJN4WwHoB4x3nYTHFIdW5xRvTGARX0p8QlM+sgnQjgQA/qAdeX4CTwBWpDRKdFSC7QCT1UmqTq92M3RUtWZw2ewH1EcqUDCNIn8pG6gzEKvDOgBlvBGp8JCb8P+VI40Ic5MABctyAx24TkxARzLQtegHu9HJsg8MoGOhEUfnhNVEXiq8Jx5kEHWuSP1SHwvEm4ktuI4EmZrGficO2JWp24HXAZ3lfN1gIxTR2rxViebiW2LcuCXctekkUkCSRc5EXhpwgt0KXSEWSQdAbgUJOjKkXNav3LE54fhPB8k5MqR/Vp/dsTnxxetMx6wXMyReeWIR+RJhbhyz6dpdzpHXO1DqWBsXLcRioppraNsgulgOL8HCblyxORjhx3x+WE4A3M+V44ktG5xxOdHq9ZBmyLwn2yImx4iwqQoPQ64DO4p52CATM6SxiUk4YuKE8AykjTWBcjlJI3vVa5JoDoCTzVeGn8/g2xOHInhhdgUcDIERx3wjTwfrECOpwnlXEJS8XILvXJkTizjpe6Rj7pREQMeIvGdRFaeZ0gGewhJO+L63KZtZnVaQ8LJ9oJww/45cpcnHUGyV9vroATZLRRleNenfNSXBje2p0QNcA0Jl3EkAZxHMttB4CpwIATvWcT2UZCb7STeAWYnwYx2F8j1/Kx+6MijUdniBmLzDLDHfGzHm5gDyFVkLuZMVMSRcDIjsYaXi22gDbnZtp2Y+S4zqZwwqERutkfxTn3/UpkDPiBzYiOcCiiggAJ2Hv4CESa3uyyU32MAAAAASUVORK5CYII="
+              class="w-5 h-5 object-contain">
+            <span class="ml-6 text-gray-600 text-sm">Camera</span>
+          </a>
+
+        </div>
+      </div>
+      <!-- all category end-->
+      <!-- navbar links -->
+      <div class="flex items-center justify-between flex-grow pl-12">
+        <div class="flex items-center text-xs md:text-base space-x-2 md:space-x-6 capitalize">
+          <a href="#" class="text-gray-200 hover:text-white transition">Home</a>
+          <a href="#" class="text-gray-200 hover:text-white transition">Shop</a>
+          <a href="#" class="text-gray-200 hover:text-white transition">About Us</a>
+          <a href="#" class="text-gray-200 hover:text-white transition">Contact Us</a>
+        </div>
+        <a href="#" class="text-xs md:text-base text-gray-200 hover:text-white transition">Login/Register</a>
+      </div>
+    </div>
+  </nav>
+  <!-- navbar end-->
+  <!-- Banner Section -->
+  <div class="carousel relative shadow-2xl bg-white">
+    <div class="carousel-inner relative overflow-hidden w-full">
+      <!--Slide 1-->
+      <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""
+        checked="checked">
+      <div class="carousel-item absolute opacity-0">
+        <img src="assets/Hero 1.png" alt="" class="w-full">
+      </div>
+      <label for="carousel-3"
+        class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-slate-700 leading-tight text-center z-1 inset-y-0 left-0 my-auto">‹</label>
+      <label for="carousel-2"
+        class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-slate-700 leading-tight text-center z-1 inset-y-0 right-0 my-auto">›</label>
+
+      <!--Slide 2-->
+      <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+      <div class="carousel-item absolute opacity-0">
+        <img src="assets/Hero 2.png" alt="" class="w-full">
+      </div>
+      <label for="carousel-1"
+        class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-slate-700 leading-tight text-center z-1 inset-y-0 left-0 my-auto">‹</label>
+      <label for="carousel-3"
+        class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-slate-700 leading-tight text-center z-1 inset-y-0 right-0 my-auto">›</label>
+
+      <!--Slide 3-->
+      <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+      <div class="carousel-item absolute opacity-0">
+        <img src="assets/Hero 3.png" alt="" class="w-full">
+      </div>
+      <label for="carousel-2"
+        class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-slate-700 leading-tight text-center z-1 inset-y-0 left-0 my-auto">‹</label>
+      <label for="carousel-1"
+        class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full bg-white hover:bg-slate-700 leading-tight text-center z-1 inset-y-0 right-0 my-auto">›</label>
+
+      <!-- Add additional indicators for each slide-->
+      <ol class="carousel-indicators">
+        <li class="inline-block mr-3">
+          <label for="carousel-1"
+            class="carousel-bullet cursor-pointer hidden md:block text-4xl text-white hover:text-blue-700">•</label>
+        </li>
+        <li class="inline-block mr-3">
+          <label for="carousel-2"
+            class="carousel-bullet cursor-pointer hidden md:block text-4xl text-white hover:text-blue-700">•</label>
+        </li>
+        <li class="inline-block mr-3">
+          <label for="carousel-3"
+            class="carousel-bullet cursor-pointer hidden md:block text-4xl text-white hover:text-blue-700">•</label>
+        </li>
+      </ol>
+
+    </div>
+  </div>
+  <!-- <div class="carousel w-full">
+    <div id="slide1" class="carousel-item relative w-full">
+      <img src="assets/Hero 1.png" class="w-full" />
+      <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+        <a href="#slide3" class="btn btn-circle">❮</a>
+        <a href="#slide2" class="btn btn-circle">❯</a>
+      </div>
+    </div>
+    <div id="slide2" class="carousel-item relative w-full">
+      <img src="assets/Hero 2.png" class="w-full" />
+      <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+        <a href="#slide1" class="btn btn-circle">❮</a>
+        <a href="#slide3" class="btn btn-circle">❯</a>
+      </div>
+    </div>
+    <div id="slide3" class="carousel-item relative w-full">
+      <img src="assets/Hero 3.png" class="w-full" />
+      <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+        <a href="#slide2" class="btn btn-circle">❮</a>
+        <a href="#slide1" class="btn btn-circle">❯</a>
+      </div>
+    </div>
+  </div> -->
+  <!-- Banner Section end-->
+  <!-- Feature Section -->
+  <div class="container py-16">
+    <div class="md:w-11/12 grid grid-cols-2 lg:grid-cols-4 gap-6 mx-auto justify-center">
+      <!-- single feature -->
+      <div
+        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        <i class="fa-solid fa-truck fa-2x "></i>
+        <div>
+          <h4 class="font-medium capitalize text-lg text-black">Free Shipping</h4>
+          <p class=" text-sm text-gray-800">Order above 999₹</p>
+        </div>
+      </div>
+      <div
+        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        <i class="fa-solid fa-credit-card fa-2x"></i>
+        <div>
+          <h4 class="font-medium capitalize text-lg text-black">Secure Payments</h4>
+          <p class=" text-sm text-gray-800">Safe shopping guarantee</p>
+        </div>
+      </div>
+      <div
+        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        <i class="fa-solid fa-hand-holding-dollar fa-2x"></i>
+        <div>
+          <h4 class="font-medium capitalize text-lg text-black">Easy Returns</h4>
+          <p class=" text-sm text-gray-800">30 Days money return</p>
+        </div>
+      </div>
+      <div
+        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        <i class="fa-solid fa-headset fa-2x"></i>
+        <div>
+          <h4 class="font-medium capitalize text-lg text-black">24/7 Support</h4>
+          <p class=" text-sm text-gray-800">Customer Support</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Feature Section end-->
+  <!-- categories -->
+  <div class="container py-16">
+    <h2 class="text-3xl font-medium text-gray-800 uppercase mb-6">Shop by category</h2>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <!-- Single category -->
+      <div class="relative rounded-sm overflow-hidden group">
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1575024357670-2b5164f470c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="" class="w-max group group-hover:scale-125 transition duration-500">
+        </div>
+        <a href="#"
+          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Laptops</a>
+      </div>
+      <div class="relative rounded-sm overflow-hidden group">
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1165&q=80"
+            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+        </div>
+        <a href="#"
+          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Headphones</a>
+      </div>
+      <div class="relative rounded-sm overflow-hidden group">
+        <div class="img-box">
+          <img
+            src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+        </div>
+        <a href="#"
+          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">SmartPhones</a>
+      </div>
+
+      <div class="relative rounded-sm overflow-hidden group">
+        <div class="img-box">
+          <img
+            src="https://images.pexels.com/photos/440320/pexels-photo-440320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+        </div>
+        <a href="#"
+          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">SmartWatches</a>
+      </div>
+
+
+      <div class="relative rounded-sm overflow-hidden group">
+        <div class="img-box ">
+          <img
+            src="https://images.pexels.com/photos/3945657/pexels-photo-3945657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="" class="w-full position- group group-hover:scale-125 transition duration-500">
+        </div>
+        <a href="#"
+          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Gaming</a>
+      </div>
+      <div class="relative rounded-sm overflow-hidden group">
+        <div class="img-box">
+          <img
+            src="https://images.unsplash.com/photo-1510127034890-ba27508e9f1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+        </div>
+        <a href="#"
+          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Cameras</a>
+      </div>
+    </div>
+  </div>
+  <!-- categories end-->
+
+  <!-- Product Wrapper -->
+  <div class="container py-16">
+    <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</h2>
+
+    <!-- product grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Single Product -->
+      <div class="bg-white shadow rounded overflow-hidden ">
+        <!-- product-image -->
+        <div class="relative group overflow-hidden">
+          <img src="assets/Apple-WatchS4-44mm-GD-SS-Cs-S-S-Bnd-Cel-491488333-i-1-1200Wx1200H.jpg" alt=""
+            class="w-full group-hover:scale-[1.1] transition duration-700">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-500">
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-search"></i>
+            </a>
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-heart"></i>
+            </a>
+          </div>
+        </div>
+        <!-- product-image end-->
+        <!-- product-content -->
+        <div class="pt-4 pb-3 px-4">
+          <a href="#">
+            <h4 class="capitalize font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Apple WS-4 </h4>
+          </a>
+          <div class="flex items-baseline mb-1 space-x-2 font-roboto">
+            <p class="text-xl text-primary font-semibold">49,999.00 ₹</p>
+            <p class="text-sm text-gray-400 line-through">71,000.00 ₹</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex gap-1 text-sm text-yellow-400">
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+            </div>
+            <div class="text-xs text-gray-500 ml-3">(150)</div>
+          </div>
+        </div>
+        <a href="#"
+          class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
+          to cart</a>
+        <!-- product-content-end -->
+      </div>
+      <!-- Single Product end-->
+      <div class="bg-white shadow rounded overflow-hidden ">
+        <!-- product-image -->
+        <div class="relative group overflow-hidden">
+          <img src="assets/Sony-Alpha-6000Y-DSLR-491186291-i-1-1200Wx1200H.jpg" alt=""
+            class="w-full group-hover:scale-[1.1] transition duration-700">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-500">
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-search"></i>
+            </a>
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-heart"></i>
+            </a>
+          </div>
+        </div>
+        <!-- product-image end-->
+        <!-- product-content -->
+        <div class="pt-4 pb-3 px-4">
+          <a href="#">
+            <h4 class="capitalize font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Sony A-6000
+            </h4>
+          </a>
+          <div class="flex items-baseline mb-1 space-x-2 font-roboto">
+            <p class="text-xl text-primary font-semibold">53,990.00 ₹</p>
+            <p class="text-sm text-gray-400 line-through">61,490.00 ₹</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex gap-1 text-sm text-yellow-400">
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+
+            </div>
+            <div class="text-xs text-gray-500 ml-3">(729)</div>
+          </div>
+        </div>
+        <a href="#"
+          class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
+          to cart</a>
+        <!-- product-content-end -->
+      </div>
+      <div class="bg-white shadow rounded overflow-hidden ">
+        <!-- product-image -->
+        <div class="relative group overflow-hidden">
+          <img src="assets/Bang-and-Olufsen-H4-2nd-Gen-Headphones-and-Headsets-492166237-i-1-1200Wx1200H.jpg" alt=""
+            class="w-full group-hover:scale-[1.1] transition duration-700">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-500">
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-search"></i>
+            </a>
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-heart"></i>
+            </a>
+          </div>
+        </div>
+        <!-- product-image end-->
+        <!-- product-content -->
+        <div class="pt-4 pb-3 px-4">
+          <a href="#">
+            <h4 class="capitalize font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Bang
+              Headphones </h4>
+          </a>
+          <div class="flex items-baseline mb-1 space-x-2 font-roboto">
+            <p class="text-xl text-primary font-semibold">21,499.00 ₹</p>
+            <p class="text-sm text-gray-400 line-through">29,999.00 ₹</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex gap-1 text-sm text-yellow-400">
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+            </div>
+            <div class="text-xs text-gray-500 ml-3">(73)</div>
+          </div>
+        </div>
+        <a href="#"
+          class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
+          to cart</a>
+        <!-- product-content-end -->
+      </div>
+      <div class="bg-white shadow rounded overflow-hidden ">
+        <!-- product-image -->
+        <div class="relative group overflow-hidden">
+          <img src="assets/Microsoft-XBOX360-SLIM-4GB-Gaming-Consoles-490767172-i-1-1200Wx1200H.jpg" alt=""
+            class="w-full group-hover:scale-[1.1] transition duration-700">
+          <div
+            class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition duration-500">
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-search"></i>
+            </a>
+            <a href="#"
+              class="text-white text-lg w-9 h-8 rounded-full bg-primary flex items-center justify-center hover:bg-gray-800 transition duration-300">
+              <i class="fas fa-heart"></i>
+            </a>
+          </div>
+        </div>
+        <!-- product-image end-->
+        <!-- product-content -->
+        <div class="pt-4 pb-3 px-4">
+          <a href="#">
+            <h4 class="capitalize font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">Xbox 360-4 GB
+            </h4>
+          </a>
+          <div class="flex items-baseline mb-1 space-x-2 font-roboto">
+            <p class="text-xl text-primary font-semibold">11,990.00 ₹</p>
+            <p class="text-sm text-gray-400 line-through">14,990.00 ₹</p>
+          </div>
+          <div class="flex items-center">
+            <div class="flex gap-1 text-sm text-yellow-400">
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star"></i></span>
+              <span> <i class="fas fa-star-half"></i></span>
+            </div>
+            <div class="text-xs text-gray-500 ml-3">(993)</div>
+          </div>
+        </div>
+        <a href="#"
+          class="block w-full py-1 text-center text-white bg-primary border border-primary rounded-b hover:bg-transparent hover:text-primary transition">Add
+          to cart</a>
+        <!-- product-content-end -->
+      </div>
+    </div>
+    <!-- product grid -->
+  </div>
+  <!-- Product Wrapper ends-->
+  <div class="bg-blue-100">
+    <footer class="container footer p-10 text-base-content">
+      <div>
+        <span class="footer-title">Services</span>
+        <a class="link link-hover">Branding</a>
+        <a class="link link-hover">Design</a>
+        <a class="link link-hover">Marketing</a>
+        <a class="link link-hover">Advertisement</a>
+      </div>
+      <div>
+        <span class="footer-title">Company</span>
+        <a class="link link-hover">About us</a>
+        <a class="link link-hover">Contact</a>
+        <a class="link link-hover">Jobs</a>
+        <a class="link link-hover">Press kit</a>
+      </div>
+      <div>
+        <span class="footer-title">Legal</span>
+        <a class="link link-hover">Terms of use</a>
+        <a class="link link-hover">Privacy policy</a>
+        <a class="link link-hover">Cookie policy</a>
+      </div>
+      <div>
+        <span class="footer-title">Newsletter</span>
+        <div class="form-control w-80">
+          <label class="label">
+            <span class="label-text">Enter your email address</span>
+          </label>
+          <div class="relative">
+            <input type="text" placeholder="username@site.com" class="input input-bordered w-full pr-16" />
+            <button class="btn btn-primary absolute top-0 right-0 rounded-l-none">Subscribe</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+</body>
+
+</html>
