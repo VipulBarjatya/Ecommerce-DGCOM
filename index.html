@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <script src="https://kit.fontawesome.com/cbf1616e77.js" crossorigin="anonymous"></script>
+
   <title>DGCOM</title>
   <style>
     .carousel-open:checked+.carousel-item {
@@ -47,9 +48,9 @@
   </style>
 </head>
 
-<body>
+<body class="text-grey-700 dark:bg-darkblue dark:text-white">
   <!-- header -->
-  <header class="py-4 shadow-sm bg-white">
+  <header class="py-4 shadow-sm">
     <div class="container flex items-center justify-between">
       <!-- logo -->
       <a href="#">
@@ -69,7 +70,25 @@
 
       <!-- icons -->
       <div class="flex items-center space-x-4">
-        <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+        <!-- Dark Light Mode Button -->
+        <button id="theme-toggle"
+          class="text-gray-500 dark:text-white hover:text-primary dark:hover:text-primary hover:bg-gray-100 rounded-lg text-xl p-2.5">
+          <!-- Dark SVG Icon -->
+          <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+          </svg>
+          <!-- Light SVG Icon -->
+          <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd" clip-rule="evenodd"></path>
+          </svg>
+
+        </button>
+
+        <a href="#" class="text-center hover:text-primary transition relative">
           <div class="text-2xl">
             <i class="far fa-heart"></i>
           </div>
@@ -77,7 +96,7 @@
           <span
             class="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
         </a>
-        <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+        <a href="#" class="text-center hover:text-primary transition relative">
           <div class="text-2xl">
             <i class="fas fa-shopping-bag"></i>
           </div>
@@ -85,7 +104,7 @@
           <span
             class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
         </a>
-        <a href="#" class="text-center text-gray-700 hover:text-primary transition relative">
+        <a href="#" class="text-center hover:text-primary transition relative">
           <div class="text-2xl">
             <i class="far fa-user"></i>
           </div>
@@ -243,35 +262,35 @@
     <div class="md:w-11/12 grid grid-cols-2 lg:grid-cols-4 gap-6 mx-auto justify-center">
       <!-- single feature -->
       <div
-        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        class="border border-gray-300 hover:border-primary hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
         <i class="fa-solid fa-truck fa-2x "></i>
         <div>
-          <h4 class="font-medium capitalize text-lg text-black">Free Shipping</h4>
-          <p class=" text-sm text-gray-800">Order above 999₹</p>
+          <h4 class="font-medium capitalize text-lg">Free Shipping</h4>
+          <p class=" text-sm">Order above 999₹</p>
         </div>
       </div>
       <div
-        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        class="border border-gray-300 hover:border-primary hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
         <i class="fa-solid fa-credit-card fa-2x"></i>
         <div>
-          <h4 class="font-medium capitalize text-lg text-black">Secure Payments</h4>
-          <p class=" text-sm text-gray-800">Safe shopping guarantee</p>
+          <h4 class="font-medium capitalize text-lg">Secure Payments</h4>
+          <p class=" text-sm">Safe shopping guarantee</p>
         </div>
       </div>
       <div
-        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        class="border border-gray-300 hover:border-primary hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
         <i class="fa-solid fa-hand-holding-dollar fa-2x"></i>
         <div>
-          <h4 class="font-medium capitalize text-lg text-black">Easy Returns</h4>
-          <p class=" text-sm text-gray-800">30 Days money return</p>
+          <h4 class="font-medium capitalize text-lg">Easy Returns</h4>
+          <p class=" text-sm">30 Days money return</p>
         </div>
       </div>
       <div
-        class="border border-gray-300 hover:border-primary text-gray-500 hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
+        class="border border-gray-300 hover:border-primary hover:text-primary transition duration-300 rounded-sm px-3 py-6 flex justify-center items-center gap-5">
         <i class="fa-solid fa-headset fa-2x"></i>
         <div>
-          <h4 class="font-medium capitalize text-lg text-black">24/7 Support</h4>
-          <p class=" text-sm text-gray-800">Customer Support</p>
+          <h4 class="font-medium capitalize text-lg">24/7 Support</h4>
+          <p class=" text-sm">Customer Support</p>
         </div>
       </div>
     </div>
@@ -279,66 +298,55 @@
   <!-- Feature Section end-->
   <!-- categories -->
   <div class="container py-16">
-    <h2 class="text-3xl font-medium text-gray-800 uppercase mb-6">Shop by category</h2>
+    <h2 class="text-3xl font-medium uppercase mb-6">Shop by category</h2>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
       <!-- Single category -->
       <div class="relative rounded-sm overflow-hidden group">
         <div class="img-box">
-          <img
-            src="https://images.unsplash.com/photo-1575024357670-2b5164f470c3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt="" class="w-max group group-hover:scale-125 transition duration-500">
+          <img src="assets/laptop.jpg" alt="" class="w-max group group-hover:scale-125 transition duration-500">
         </div>
         <a href="#"
-          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Laptops</a>
+          class="absolute inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Laptops</a>
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <div class="img-box">
-          <img
-            src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1165&q=80"
-            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+          <img src="assets/headphone.jpg" alt="" class="w-full group group-hover:scale-125 transition duration-500">
         </div>
         <a href="#"
-          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Headphones</a>
+          class="absolute inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Headphones</a>
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <div class="img-box">
-          <img
-            src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+          <img src="assets/smartphone.jpeg" alt="" class="w-full group group-hover:scale-125 transition duration-500">
         </div>
         <a href="#"
-          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">SmartPhones</a>
+          class="absolute inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">SmartPhones</a>
       </div>
 
       <div class="relative rounded-sm overflow-hidden group">
         <div class="img-box">
-          <img
-            src="https://images.pexels.com/photos/440320/pexels-photo-440320.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+          <img src="assets/watch.jpeg" alt="" class="w-full group group-hover:scale-125 transition duration-500">
         </div>
         <a href="#"
-          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">SmartWatches</a>
+          class="absolute inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">SmartWatches</a>
       </div>
 
 
       <div class="relative rounded-sm overflow-hidden group">
         <div class="img-box ">
-          <img
-            src="https://images.pexels.com/photos/3945657/pexels-photo-3945657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="" class="w-full position- group group-hover:scale-125 transition duration-500">
+          <img src="assets/gaming.jpeg" alt=""
+            class="w-full position- group group-hover:scale-125 transition duration-500">
         </div>
         <a href="#"
-          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Gaming</a>
+          class="absolute inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Gaming</a>
       </div>
       <div class="relative rounded-sm overflow-hidden group">
         <div class="img-box">
-          <img
-            src="https://images.unsplash.com/photo-1510127034890-ba27508e9f1c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt="" class="w-full group group-hover:scale-125 transition duration-500">
+          <img src="assets/camera.jpg" alt="" class="w-full group group-hover:scale-125 transition duration-500">
         </div>
         <a href="#"
-          class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Cameras</a>
+          class="absolute inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center text-xl text-white font-roboto font-medium group-hover:scale-[1.5] transition duration-500">Cameras</a>
       </div>
     </div>
   </div>
@@ -346,7 +354,7 @@
 
   <!-- Product Wrapper -->
   <div class="container py-16">
-    <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">top new arrival</h2>
+    <h2 class="text-2xl font-medium uppercase mb-6">top new arrival</h2>
 
     <!-- product grid -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -567,8 +575,57 @@
       </div>
     </footer>
   </div>
+  <script src="script.js"></script>
+  <script>
+
+  </script>
+
+  <!-- <script>
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+    const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+      (!("color-theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      //  Show light icon
+      themeToggleLightIcon.classList.remove("hidden");
+    } else {
+      themeToggleDarkIcon.classList.remove("hidden");
+    }
+
+    themeToggleBtn.addEventListener("click", toggleMode);
+
+    function toggleMode() {
+      // Toggle icon
+      themeToggleDarkIcon.classList.toggle("hidden");
+      themeToggleLightIcon.classList.toggle("hidden");
 
 
+      // If is set in localstorage
+      if (localStorage.getItem('color-theme')) {
+        // If light, make dark and save in localstorage
+        if (localStorage.getItem('color-theme') === 'light') {
+          document.documentElement.classList.add('dark')
+          localStorage.setItem('color-theme', 'dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+          localStorage.setItem('color-theme', 'light')
+        }
+      } else {
+        // If not in localstorage
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark')
+          localStorage.setItem('color-theme', 'light')
+        } else {
+          document.documentElement.classList.add('dark')
+          localStorage.setItem('color-theme', 'dark')
+        }
+      }
+    }
+  </script> -->
 </body>
 
 </html>

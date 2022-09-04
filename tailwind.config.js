@@ -1,5 +1,6 @@
 module.exports = {
   content: ["./*.html"],
+  darkMode: "class",
   theme: {
     screens: {
       sm: "576px",
@@ -18,6 +19,7 @@ module.exports = {
       },
       colors: {
         primary: "#3397ff",
+        darkblue: "#1f2937",
       },
     },
   },
