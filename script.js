@@ -1,3 +1,7 @@
+"use strict";
+
+// Dark Mode
+
 const themeToggleBtn = document.getElementById("theme-toggle");
 const themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
 const themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
@@ -41,3 +45,33 @@ function toggleMode() {
     }
   }
 }
+
+// Modal Window
+const modal = document.querySelector(".modale");
+const overlay = document.querySelector(".overlay");
+const btnCloseModal = document.querySelector(".close-modal");
+
+const openModal = function () {
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
+};
+
+const closeModal = function () {
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
+};
+
+window.onload = () => {
+  setTimeout(() => {
+    openModal();
+  }, 200);
+};
+
+btnCloseModal.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+    closeModal();
+  }
+});

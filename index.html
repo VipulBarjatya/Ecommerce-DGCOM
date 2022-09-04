@@ -44,11 +44,52 @@
     #carousel-3:checked~.control-3~.carousel-indicators li:nth-child(3) .carousel-bullet {
       color: #3397ff;
       /*Set to match the Tailwind colour you want the active one to be */
+
+
+    }
+
+    .hidden {
+      display: none;
+
+    }
+
+    .modale {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      background-color: white;
+      padding: 6rem;
+      border-radius: 5px;
+      box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 5;
     }
   </style>
 </head>
 
 <body class="text-grey-700 dark:bg-darkblue dark:text-white">
+  <!-- modal -->
+  <div class="modale hidden">
+    <h1 class="text-xl font-bold pb-4">Congratulations! </h1>
+    <p class="pb-4 font-medium">
+      You have won free reward points worth 2,000 😍, Just shop for ₹5,000 and above and redeem upto 25% points per
+      purchase, and 50% if cart value is ₹10,000
+    </p>
+    <button class="close-modal text-xl font-bold text-white bg-darkblue p-2 rounded-lg float-right">YAY!</button>
+  </div>
+  <div class="overlay hidden"></div>
   <!-- header -->
   <header class="py-4 shadow-sm">
     <div class="container flex items-center justify-between">
