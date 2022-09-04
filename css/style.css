@@ -3114,6 +3114,15 @@ h1, h2, h3, h4, h5, h6{
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-lightdarkblue:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(48 63 83 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-opacity-20:hover{
+  --tw-bg-opacity: 0.2;
+}
+
 .hover\:text-primary:hover{
   --tw-text-opacity: 1;
   color: rgb(51 151 255 / var(--tw-text-opacity));
@@ -3168,6 +3177,11 @@ h1, h2, h3, h4, h5, h6{
 .dark .dark\:text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark .dark\:hover\:bg-lightdarkblue:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgb(48 63 83 / var(--tw-bg-opacity));
 }
 
 .dark .dark\:hover\:text-primary:hover{
