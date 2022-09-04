@@ -52,13 +52,13 @@ const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".close-modal");
 
 const openModal = function () {
-  modal.classList.remove("hidden");
-  overlay.classList.remove("hidden");
+  modal.classList.remove("hide");
+  overlay.classList.remove("hide");
 };
 
 const closeModal = function () {
-  modal.classList.add("hidden");
-  overlay.classList.add("hidden");
+  modal.classList.add("hide");
+  overlay.classList.add("hide");
 };
 
 window.onload = () => {
@@ -71,7 +71,7 @@ btnCloseModal.addEventListener("click", closeModal);
 overlay.addEventListener("click", closeModal);
 
 document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+  if (e.key === "Escape" && !modal.classList.contains("hide")) {
     closeModal();
   }
 });
