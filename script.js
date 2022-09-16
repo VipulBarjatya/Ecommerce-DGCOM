@@ -75,3 +75,33 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+// Location and weather
+
+const weather = document.querySelector(".temp");
+
+window.onload = () => {
+  geolocation();
+};
+
+function geolocation() {
+  navigator.geolocation.getCurrentPosition(showPosition);
+}
+
+function showPosition(data) {
+  console.log(data);
+  let lat = data.coords.latitude;
+  let long = data.coords.longitude;
+  const url = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${long}&mode=json&units=metric&cnt=5&appid=fbf712a5a83d7305c3cda4ca8fe7ef29`;
+
+  // api calling
+  fetch(url, { method: "GET" })
+    // return promise
+    .then((response) => response.json())
+
+    // resolve the promise
+    .then((data) => {
+      const temp = data.list[0].temp.day.toFixed(0);
+      weather.textContent = `${temp}°C`;
+    });
+}
