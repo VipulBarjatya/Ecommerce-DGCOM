@@ -62,6 +62,7 @@ const closeModal = function () {
 };
 
 window.onload = () => {
+  geolocation();
   setTimeout(() => {
     openModal();
   }, 200);
@@ -79,10 +80,6 @@ document.addEventListener("keydown", function (e) {
 // Location and weather
 
 const weather = document.querySelector(".temp");
-
-window.onload = () => {
-  geolocation();
-};
 
 function geolocation() {
   navigator.geolocation.getCurrentPosition(showPosition);
